@@ -1,6 +1,10 @@
-import type { NextConfig } from "next";
+import { createRequire } from "node:module"
 
-import { permanentRedirects } from "./lib/seo/redirects";
+import type { NextConfig } from "next"
+
+import { permanentRedirects } from "./lib/seo/redirects"
+
+const require = createRequire(import.meta.url)
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
@@ -11,11 +15,11 @@ const nextConfig: NextConfig = {
     root: process.cwd(),
     rules: {
       "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
+        loaders: [require.resolve("@tailwindcss/turbopack")],
         as: "*.css",
       },
     },
   },
-};
+}
 
 export default nextConfig;

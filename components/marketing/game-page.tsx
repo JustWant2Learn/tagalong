@@ -79,7 +79,7 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-game-accent">{game.hero.eyebrow}</p>
             <h1 className="mt-3 font-display text-4xl tracking-tight md:text-6xl">
-              {keywords?.primary ?? game.hero.headline}
+              {game.name}
             </h1>
             <p className="mt-4 max-w-xl text-lg text-muted-foreground">{copy?.intro ?? game.hero.subheadline}</p>
             {game.variants ? (
