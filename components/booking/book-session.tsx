@@ -30,7 +30,6 @@ import type { Service } from "@/lib/seed/types"
 import { cn } from "@/lib/utils"
 
 const steps = [
-  { id: "game", label: "Game" },
   { id: "service", label: "Service" },
   { id: "details", label: "Details" },
   { id: "schedule", label: "Time & Pro" },
@@ -76,7 +75,6 @@ export function BookSession({
     setGameSlug(slug)
     setServiceSlug(undefined)
     setEdition(games.find((item) => item.slug === slug)?.variants?.[0]?.key)
-    setStep("service")
   }
 
   function selectService(slug: string) {
@@ -95,8 +93,7 @@ export function BookSession({
               <button
                 type="button"
                 onClick={() => {
-                  if (item.id === "details" && !selectedService) return
-                  if ((item.id === "schedule" || item.id === "pay") && !selectedService) return
+                  if (item.id !== "service" && !selectedService) return
                   setStep(item.id)
                 }}
                 className="flex min-h-11 cursor-pointer items-center gap-2"
@@ -128,7 +125,7 @@ export function BookSession({
         })}
       </ol>
 
-      {step === "service" || step === "game" ? (
+      {step === "service" ? (
         <ServiceStep
           games={games}
           game={game}
