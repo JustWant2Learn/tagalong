@@ -54,6 +54,12 @@ export function platformLabel(platform: string): string {
     ps5: "PS5",
     xbox: "Xbox",
     gamepass: "Game Pass",
+    pc: "PC",
+    windows: "Windows",
+    ps: "PlayStation",
+    switch: "Switch",
+    ios: "iOS",
+    android: "Android",
   }
   return labels[platform] ?? platform
 }

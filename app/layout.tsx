@@ -2,10 +2,14 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import { Geist, Geist_Mono } from "next/font/google"
 
+import { PageJsonLd } from "@/components/seo/page-json-ld"
 import { ThemeProvider } from "@/components/theme/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { brand } from "@/lib/brand"
+import { pageTitle } from "@/lib/seo/metadata"
+import { organizationSchema, websiteSchema } from "@/lib/seo/schema"
+import { siteUrl } from "@/lib/seo/site-url"
 
 import "./globals.css"
 
@@ -19,23 +23,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
+const homeTitle = pageTitle("Play co-op with a real player")
+
 export const metadata: Metadata = {
-  metadataBase: new URL(brand.url),
+  metadataBase: new URL(siteUrl()),
   title: {
-    default: `${brand.name} — ${brand.tagline}`,
-    template: `%s · ${brand.name}`,
+    default: homeTitle,
+    template: `%s | ${brand.name}`,
   },
-  description: brand.description,
+  description:
+    "Book skilled players to squad up in ARC Raiders, Valheim, Enshrouded and Minecraft. No account sharing. Real players. Book in minutes.",
+  alternates: { canonical: siteUrl() },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
   openGraph: {
-    title: `${brand.name} — ${brand.tagline}`,
+    title: homeTitle,
     description: brand.description,
-    url: brand.url,
+    url: siteUrl(),
     siteName: brand.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${brand.name} — ${brand.tagline}`,
+    title: homeTitle,
     description: brand.description,
   },
 }
@@ -53,6 +67,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </noscript>
         <ThemeProvider>
           <TooltipProvider>
+            <PageJsonLd data={[organizationSchema(), websiteSchema()]} />
             {children}
             <Toaster />
           </TooltipProvider>

@@ -31,6 +31,17 @@ export function GuideCard({ guide }: { guide: SeedGuide }) {
                 {gamesBySlug[slug]?.name ?? slug}
               </Badge>
             ))}
+            {guide.gameApprovals?.flatMap((approval) =>
+              approval.variants.map((variant) => (
+                <Badge key={`${approval.gameSlug}-${variant}`} variant="outline">
+                  {variant}
+                </Badge>
+              ))
+            )}
+            {guide.gameApprovals?.some((approval) => approval.moddedExperience) ? (
+              <Badge variant="outline">Modded</Badge>
+            ) : null}
+            {guide.youthCleared ? <Badge variant="outline">Youth-cleared</Badge> : null}
           </div>
           <p className="text-xs text-muted-foreground">
             {guide.ratingAvg.toFixed(1)} · {guide.sessionsCompleted} sessions

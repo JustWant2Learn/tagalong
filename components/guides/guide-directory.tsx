@@ -5,8 +5,48 @@ import { useMemo, useState } from "react"
 import { GuideCard } from "@/components/marketing/guide-card"
 import { Field, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import type { GameConfig, Platform } from "@/lib/games"
 import type { SeedGuide } from "@/lib/seed/types"
+
+function DirectorySelect({
+  id,
+  value,
+  onValueChange,
+  items,
+}: {
+  id: string
+  value: string
+  onValueChange: (value: string) => void
+  items: { value: string; label: string }[]
+}) {
+  return (
+    <Select
+      value={value}
+      items={items}
+      onValueChange={(next) => {
+        if (next) onValueChange(next)
+      }}
+    >
+      <SelectTrigger id={id} className="w-full">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent align="start" alignItemWithTrigger={false}>
+        {items.map((item) => (
+          <SelectItem key={item.value} value={item.value}>
+            {item.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}
 
 export function GuideDirectory({
   guides,
@@ -53,51 +93,39 @@ export function GuideDirectory({
         </Field>
         <Field>
           <FieldLabel htmlFor="guide-game">Game</FieldLabel>
-          <select
+          <DirectorySelect
             id="guide-game"
-            className="h-8 rounded-lg border border-input bg-transparent px-2.5 text-sm"
             value={game}
-            onChange={(event) => setGame(event.target.value)}
-          >
-            <option value="all">All games</option>
-            {games.map((item) => (
-              <option key={item.slug} value={item.slug}>
-                {item.name}
-              </option>
-            ))}
-          </select>
+            onValueChange={setGame}
+            items={[
+              { value: "all", label: "All games" },
+              ...games.map((item) => ({ value: item.slug, label: item.name })),
+            ]}
+          />
         </Field>
         <Field>
           <FieldLabel htmlFor="guide-language">Language</FieldLabel>
-          <select
+          <DirectorySelect
             id="guide-language"
-            className="h-8 rounded-lg border border-input bg-transparent px-2.5 text-sm"
             value={language}
-            onChange={(event) => setLanguage(event.target.value)}
-          >
-            <option value="all">Any language</option>
-            {languages.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+            onValueChange={setLanguage}
+            items={[
+              { value: "all", label: "Any language" },
+              ...languages.map((item) => ({ value: item, label: item })),
+            ]}
+          />
         </Field>
         <Field>
           <FieldLabel htmlFor="guide-platform">Platform</FieldLabel>
-          <select
+          <DirectorySelect
             id="guide-platform"
-            className="h-8 rounded-lg border border-input bg-transparent px-2.5 text-sm"
             value={platform}
-            onChange={(event) => setPlatform(event.target.value)}
-          >
-            <option value="all">Any platform</option>
-            {platforms.map((item) => (
-              <option key={item} value={item}>
-                {item as Platform}
-              </option>
-            ))}
-          </select>
+            onValueChange={setPlatform}
+            items={[
+              { value: "all", label: "Any platform" },
+              ...platforms.map((item) => ({ value: item, label: item as Platform })),
+            ]}
+          />
         </Field>
       </div>
       <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">

@@ -17,6 +17,7 @@ export function GameArt({
   const game = getGame(slug)
   const src = game?.coverImage ?? "/games/arc-raiders.jpg"
   const alt = game ? `${game.name} gameplay` : "Game artwork"
+  const isSvg = src.endsWith(".svg")
 
   return (
     <div className={cn("relative overflow-hidden bg-muted", className)}>
@@ -25,6 +26,7 @@ export function GameArt({
         alt={alt}
         fill
         priority={priority}
+        unoptimized={isSvg}
         sizes={sizes}
         className="object-cover"
         style={{ objectPosition: game?.coverPosition ?? "center" }}

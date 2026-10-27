@@ -2,8 +2,10 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { GamePageView } from "@/components/marketing/game-page"
-import { brand } from "@/lib/brand"
 import { games, getGame, isGameSlug } from "@/lib/games"
+import { getKeywords } from "@/lib/seo/keywords"
+import { buildMetadata } from "@/lib/seo/metadata"
+import { gameSeoCopy } from "@/lib/seed/seo-copy"
 
 export const instant = false
 
@@ -19,21 +21,25 @@ export async function generateMetadata({
   const { game: slug } = await params
   const game = getGame(slug)
   if (!game) return {}
-  return {
-    title: game.seo.title,
-    description: game.seo.description,
-    keywords: [...game.seo.keywords],
-    openGraph: {
-      title: `${game.seo.title} · ${brand.name}`,
-      description: game.seo.description,
-    },
-  }
+  const path = `/${slug}`
+  return buildMetadata({
+    path,
+    keywords: getKeywords(path),
+    description: gameSeoCopy[slug]?.intro ?? game.seo.description,
+  })
 }
 
-export default async function GameRoute({ params }: { params: Promise<{ game: string }> }) {
+export default async function GameRoute({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ game: string }>
+  searchParams: Promise<{ edition?: string }>
+}) {
   const { game: slug } = await params
+  const { edition } = await searchParams
   if (!isGameSlug(slug)) notFound()
   const game = getGame(slug)
   if (!game) notFound()
-  return <GamePageView game={game} />
+  return <GamePageView game={game} edition={edition} />
 }

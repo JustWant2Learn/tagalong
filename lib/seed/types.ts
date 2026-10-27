@@ -1,6 +1,6 @@
 export type PricingType = "hourly" | "fixed" | "per_raid"
 
-export type ServiceTargetKind = "boss" | "map" | "quest" | "event" | "item" | "biome"
+export type ServiceTargetKind = "boss" | "map" | "quest" | "event" | "item" | "biome" | "farm"
 
 export type ServiceTarget = {
   id: string
@@ -32,6 +32,11 @@ export type Service = {
   eventBanner?: string
   minGuides: number
   maxGuides: number
+  variants?: string[]
+  familySession?: boolean
+  requiresWorldBackup?: boolean
+  hardcore?: boolean
+  moddedOnly?: boolean
 }
 
 export type Addon = {
@@ -44,6 +49,7 @@ export type Addon = {
     type: "percent_of_guide_rate" | "percent_of_order" | "flat"
     value: number
   }
+  blockedServiceSlugs?: string[]
 }
 
 export type Bundle = {
@@ -74,6 +80,15 @@ export type SeedGuide = {
   featured: boolean
   flair: string
   hoursPlayed: Record<string, number>
+  gameApprovals?: {
+    gameSlug: string
+    variants: string[]
+    platforms: string[]
+    moddedExperience: boolean
+  }[]
+  youthCleared?: boolean
+  portfolio?: { src: string; caption: string }[]
+  redstoneLevel?: "none" | "basic" | "advanced"
 }
 
 export type SeedReview = {

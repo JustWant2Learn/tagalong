@@ -13,7 +13,7 @@ export const helpArticles: HelpArticle[] = [
       },
       {
         heading: "Squad size",
-        body: "ARC Raiders squads are 3. You plus at most 2 Guides. Valheim and Enshrouded allow larger parties; we still cap extra Guides to the game’s max squad size.",
+        body: "ARC Raiders squads are 3. You plus at most 2 Guides. Valheim and Enshrouded allow larger parties; we still cap extra Guides to the game’s max squad size. Minecraft allows up to 2 Guides per order even though a Realm can hold more players.",
       },
     ],
   },
@@ -62,6 +62,46 @@ export const helpArticles: HelpArticle[] = [
       {
         heading: "Hosted world",
         body: "Invite the Guide on Steam to the world you are hosting.",
+      },
+    ],
+  },
+  {
+    slug: "joining-minecraft",
+    title: "Joining in Minecraft",
+    audience: "customer",
+    summary: "Java or Bedrock, your version, your world. We do not host servers.",
+    sections: [
+      {
+        heading: "Pick an edition first",
+        body: "Java and Bedrock cannot play together natively. Book the edition you actually launch. We match Guides to that edition and platform.",
+      },
+      {
+        heading: "How they join",
+        body: "Dedicated server (Java 25565, Bedrock 19132), a Realms invite, Bedrock friend-join, or a Java hosting mod such as Essential. Never a password.",
+      },
+      {
+        heading: "Versions and packs",
+        body: "Share the exact version. For Java modpacks, send a CurseForge or Modrinth link plus loader. The Guide confirms the install before the timer starts.",
+      },
+    ],
+  },
+  {
+    slug: "minecraft-youth-safety",
+    title: "Minecraft youth safety",
+    audience: "both",
+    summary: "18+ bookers, Family Sessions, text-only chat, youth-cleared Guides.",
+    sections: [
+      {
+        heading: "Customers are 18+",
+        body: "The booker must be 18 or older and the account holder. A minor may only be in a Family Session with that adult present in-game the entire time.",
+      },
+      {
+        heading: "Family Sessions",
+        body: "Text chat only, inside the app. No voice add-on. No Discord. Only Guides with a youth-cleared flag — extra review and a KYC result, never ID images stored here — can accept.",
+      },
+      {
+        heading: "Reports",
+        body: "A child-safety report pauses the order, notifies admin, and removes the Guide from the job board until review. That flow ships with orders in Phase 2.",
       },
     ],
   },

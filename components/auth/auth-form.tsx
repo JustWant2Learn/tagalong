@@ -6,6 +6,7 @@ import { toast } from "sonner"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { brand } from "@/lib/brand"
@@ -18,12 +19,17 @@ export function AuthForm({
   mode: "login" | "signup" | "reset"
 }) {
   const [email, setEmail] = useState("")
+  const [ageConfirmed, setAgeConfirmed] = useState(false)
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const parsed = emailSchema.safeParse(email)
     if (!parsed.success) {
       toast.error("Enter a valid email.")
+      return
+    }
+    if (mode === "signup" && !ageConfirmed) {
+      toast.error("Confirm you are 18 or older and the account holder.")
       return
     }
     toast.success("Auth is UI-ready. Magic links connect in Phase 2 with Supabase.")
@@ -53,6 +59,20 @@ export function AuthForm({
             />
             <FieldDescription>Magic link. No game credentials. Ever.</FieldDescription>
           </Field>
+          {mode === "signup" ? (
+            <Field>
+              <label className="flex items-start gap-2 text-sm leading-snug">
+                <Checkbox
+                  checked={ageConfirmed}
+                  onCheckedChange={(checked) => setAgeConfirmed(checked === true)}
+                />
+                I am 18 or older and the account holder
+              </label>
+              <FieldDescription>
+                Minors may only appear in a Family Session booked and supervised by this account.
+              </FieldDescription>
+            </Field>
+          ) : null}
         </FieldGroup>
         <Button type="submit" className="w-full">
           {mode === "reset" ? "Send reset link" : "Continue with email"}

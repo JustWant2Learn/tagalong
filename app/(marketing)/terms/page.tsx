@@ -23,9 +23,9 @@ export default function TermsPage() {
       </p>
       <h2>Accounts and age</h2>
       <p>
-        Guides must be 18 or older. Customers must accept these terms. If you are under 18, you may only use the site
-        with a parent or guardian’s consent and you may not apply as a Guide. We may close accounts that fail age
-        checks.
+        Guides must be 18 or older. Customers must be 18 or older and the account holder. If a minor will be in a
+        session, an adult must book a Family Session and stay in the game the entire time. We may close accounts that
+        fail age checks.
       </p>
       <h2>No account sharing</h2>
       <p>
@@ -43,10 +43,17 @@ export default function TermsPage() {
         violate a game’s terms beyond ordinary multiplayer squad play. See the{" "}
         <Link href="/code-of-conduct">code of conduct</Link>.
       </p>
+      <h2>Youth-risk games</h2>
+      <p>
+        On Minecraft and any other youth-risk catalog entry, contact stays in order chat. Family Sessions are text-only
+        inside the app. Guides will not request friend requests, gifts or personal information beyond the session.
+        Child-safety reports pause the order and the Guide’s job-board access pending review.
+      </p>
       <h2>Affiliation</h2>
       <p>
-        {brand.name} is not affiliated with Embark Studios, Nexon, Iron Gate, Coffee Stain, Keen Games or Valve. Game
-        names are used only to describe the services we offer.
+        {brand.name} is not affiliated with Embark Studios, Nexon, Iron Gate, Coffee Stain, Keen Games, Valve, Mojang
+        or Microsoft. Game names are used only to describe the services we offer. Minecraft pages also carry: NOT AN
+        OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
       </p>
       <h2>Contact</h2>
       <p>

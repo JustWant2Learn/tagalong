@@ -27,6 +27,7 @@ const applicationSchema = z.object({
   proof: z.string().min(10),
   why: z.string().min(20),
   conduct: z.literal(true),
+  youthSafetyAck: z.boolean().optional(),
 })
 
 type ApplicationForm = {
@@ -45,6 +46,15 @@ type ApplicationForm = {
   proof: string
   why: string
   conduct: boolean
+  mcJava: boolean
+  mcBedrock: boolean
+  mcUsername: string
+  mcGamertag: string
+  mcModded: boolean
+  mcPacks: string
+  mcRedstone: "none" | "basic" | "advanced"
+  mcPortfolio: string
+  youthSafetyAck: boolean
 }
 
 const emptyForm: ApplicationForm = {
@@ -63,6 +73,15 @@ const emptyForm: ApplicationForm = {
   proof: "",
   why: "",
   conduct: false,
+  mcJava: false,
+  mcBedrock: false,
+  mcUsername: "",
+  mcGamertag: "",
+  mcModded: false,
+  mcPacks: "",
+  mcRedstone: "none",
+  mcPortfolio: "",
+  youthSafetyAck: false,
 }
 
 export function ApplyForm() {
@@ -78,9 +97,13 @@ export function ApplyForm() {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const parsed = applicationSchema.safeParse(form)
-    if (!parsed.success) {
-      setErrors(parsed.error.issues.map((issue) => issue.message))
+    const wantsMinecraft = form.games.includes("minecraft")
+    const parsed = applicationSchema.safeParse({
+      ...form,
+      youthSafetyAck: wantsMinecraft ? form.youthSafetyAck : true,
+    })
+    if (!parsed.success || (wantsMinecraft && !form.youthSafetyAck) || (wantsMinecraft && !form.mcJava && !form.mcBedrock)) {
+      setErrors(parsed.success ? ["Complete the Minecraft section."] : parsed.error.issues.map((issue) => issue.message))
       toast.error("Please complete the required fields.")
       return
     }
@@ -171,6 +194,100 @@ export function ApplyForm() {
           </div>
         </Field>
 
+        {form.games.includes("minecraft") ? (
+          <div className="space-y-4 rounded-xl border border-border/70 p-4">
+            <p className="text-sm font-medium">Minecraft</p>
+            <p className="text-xs text-muted-foreground">
+              Approval is per edition and platform. Youth-cleared status needs extra review later — never send ID images
+              here.
+            </p>
+            <div className="flex flex-wrap gap-4 text-sm">
+              <label className="flex items-center gap-2">
+                <Checkbox
+                  checked={form.mcJava}
+                  onCheckedChange={(checked) => setForm({ ...form, mcJava: checked === true })}
+                />
+                Java Edition (PC)
+              </label>
+              <label className="flex items-center gap-2">
+                <Checkbox
+                  checked={form.mcBedrock}
+                  onCheckedChange={(checked) => setForm({ ...form, mcBedrock: checked === true })}
+                />
+                Bedrock
+              </label>
+              <label className="flex items-center gap-2">
+                <Checkbox
+                  checked={form.mcModded}
+                  onCheckedChange={(checked) => setForm({ ...form, mcModded: checked === true })}
+                />
+                Modded Java experience
+              </label>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Field>
+                <FieldLabel htmlFor="mc-user">Java username</FieldLabel>
+                <Input
+                  id="mc-user"
+                  value={form.mcUsername}
+                  onChange={(event) => setForm({ ...form, mcUsername: event.target.value })}
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="mc-tag">Microsoft / Xbox Gamertag</FieldLabel>
+                <Input
+                  id="mc-tag"
+                  value={form.mcGamertag}
+                  onChange={(event) => setForm({ ...form, mcGamertag: event.target.value })}
+                />
+              </Field>
+            </div>
+            <Field>
+              <FieldLabel htmlFor="mc-packs">Packs you have played</FieldLabel>
+              <Textarea
+                id="mc-packs"
+                value={form.mcPacks}
+                onChange={(event) => setForm({ ...form, mcPacks: event.target.value })}
+                placeholder="ATM10, Create: Above and Beyond…"
+              />
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="mc-redstone">Redstone experience</FieldLabel>
+              <select
+                id="mc-redstone"
+                className="h-8 rounded-lg border border-input bg-transparent px-2.5 text-sm"
+                value={form.mcRedstone}
+                onChange={(event) =>
+                  setForm({ ...form, mcRedstone: event.target.value as ApplicationForm["mcRedstone"] })
+                }
+              >
+                <option value="none">None</option>
+                <option value="basic">Basic</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="mc-portfolio">Build portfolio links</FieldLabel>
+              <Textarea
+                id="mc-portfolio"
+                value={form.mcPortfolio}
+                onChange={(event) => setForm({ ...form, mcPortfolio: event.target.value })}
+                placeholder="Up to 8 screenshot links of your own builds"
+              />
+            </Field>
+            <Field>
+              <FieldLabel className="items-start">
+                <Checkbox
+                  checked={form.youthSafetyAck}
+                  onCheckedChange={(checked) => setForm({ ...form, youthSafetyAck: checked === true })}
+                />
+                I acknowledge the Youth Safety Rules: 18+ only, Family Sessions are text-only, no friend requests or
+                personal info beyond the session, and I will never ask for a login.
+              </FieldLabel>
+            </Field>
+          </div>
+        ) : null}
+
         <Field>
           <FieldLabel htmlFor="platforms">Platforms you own</FieldLabel>
           <Input
@@ -247,7 +364,9 @@ export function ApplyForm() {
       </FieldGroup>
 
       {errors.length > 0 ? (
-        <p className="text-sm text-destructive">Check name, handle, email, age confirmation, games, proof and conduct.</p>
+        <p className="text-sm text-destructive">
+          Check name, handle, email, age confirmation, games, Minecraft section, proof and conduct.
+        </p>
       ) : null}
 
       <Button type="submit" className="w-full sm:w-auto">

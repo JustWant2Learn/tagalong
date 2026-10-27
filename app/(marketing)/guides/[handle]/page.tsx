@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -7,9 +8,12 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs"
 import { getGuide, getService, listGuides, listReviews } from "@/lib/catalog"
 import { languageLabel, platformLabel } from "@/lib/format"
 import { gamesBySlug } from "@/lib/games"
+import { resolveKeywords } from "@/lib/seo/dynamic-keywords"
+import { buildMetadata } from "@/lib/seo/metadata"
 import { cn } from "@/lib/utils"
 
 export const instant = false
@@ -26,10 +30,13 @@ export async function generateMetadata({
   const { handle } = await params
   const guide = getGuide(handle)
   if (!guide) return {}
-  return {
-    title: `${guide.displayName} (@${guide.handle})`,
+  const path = `/guides/${handle}`
+  return buildMetadata({
+    path,
+    keywords: resolveKeywords(path),
     description: guide.bio,
-  }
+    index: listReviews({ guideHandle: handle }).length >= 1,
+  })
 }
 
 export default async function GuideProfilePage({ params }: { params: Promise<{ handle: string }> }) {
@@ -39,6 +46,14 @@ export default async function GuideProfilePage({ params }: { params: Promise<{ h
   const reviews = listReviews({ guideHandle: guide.handle })
 
   return (
+    <div>
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Guides", path: "/guides" },
+          { name: guide.displayName, path: `/guides/${guide.handle}` },
+        ]}
+      />
     <Section>
       <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
         <Card>
@@ -63,6 +78,17 @@ export default async function GuideProfilePage({ params }: { params: Promise<{ h
                   {gamesBySlug[slug]?.name ?? slug}
                 </Badge>
               ))}
+              {guide.gameApprovals?.flatMap((approval) =>
+                approval.variants.map((variant) => (
+                  <Badge key={`${approval.gameSlug}-${variant}`} variant="outline">
+                    {variant}
+                  </Badge>
+                ))
+              )}
+              {guide.gameApprovals?.some((approval) => approval.moddedExperience) ? (
+                <Badge variant="outline">Modded</Badge>
+              ) : null}
+              {guide.youthCleared ? <Badge variant="outline">Youth-cleared</Badge> : null}
             </div>
             <p className="text-muted-foreground">
               {guide.languages.map(languageLabel).join(", ")} · {guide.platforms.map(platformLabel).join(", ")}
@@ -97,6 +123,30 @@ export default async function GuideProfilePage({ params }: { params: Promise<{ h
               ))}
             </CardContent>
           </Card>
+          {guide.portfolio?.length ? (
+            <Card>
+              <CardHeader>
+                <CardTitle>Build portfolio</CardTitle>
+              </CardHeader>
+              <CardContent className="grid gap-3 sm:grid-cols-2">
+                {guide.portfolio.slice(0, 8).map((item) => (
+                  <figure key={item.caption} className="overflow-hidden rounded-xl ring-1 ring-foreground/10">
+                    <div className="relative aspect-video">
+                      <Image
+                        src={item.src}
+                        alt={item.caption}
+                        fill
+                        unoptimized={item.src.endsWith(".svg")}
+                        className="object-cover"
+                        sizes="(min-width: 768px) 280px, 100vw"
+                      />
+                    </div>
+                    <figcaption className="px-3 py-2 text-xs text-muted-foreground">{item.caption}</figcaption>
+                  </figure>
+                ))}
+              </CardContent>
+            </Card>
+          ) : null}
           <Card>
             <CardHeader>
               <CardTitle>Services offered</CardTitle>
@@ -134,5 +184,6 @@ export default async function GuideProfilePage({ params }: { params: Promise<{ h
         </div>
       </div>
     </Section>
+    </div>
   )
 }

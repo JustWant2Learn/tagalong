@@ -42,6 +42,16 @@ export default function RefundsPage() {
         Guides never take loot you have not explicitly given them in chat. Anything they pick up for you is handed over
         before the session ends.
       </p>
+      <h2>Minecraft setup and hardcore</h2>
+      <p>
+        If the Guide cannot join because the version, loader or pack on the order was wrong, they mark Setup mismatch.
+        The session timer does not start. You have 30 minutes to fix the details. After that the order follows the
+        customer no-show rule.
+      </p>
+      <p>
+        Build and farm sessions require a confirmed world backup before start. Hardcore Buddy Runs end if the character
+        dies; billed time is not refundable.
+      </p>
       <h2>Disputes</h2>
       <p>
         Open a dispute within 48 hours of the session ending. Funds stay pending. Raid logs and screenshots are the

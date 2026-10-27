@@ -1,3 +1,4 @@
+import { minecraftAddons, minecraftServices, minecraftTargets, minecraftVoiceBlock } from "./minecraft-catalog"
 import type { Addon, Bundle, Service, ServiceTarget } from "./types"
 
 const defaultCommission = 30
@@ -386,6 +387,7 @@ export const services: Service[] = [
     minGuides: 1,
     maxGuides: 1,
   },
+  ...minecraftServices,
 ]
 
 const arcMaps = [
@@ -527,6 +529,7 @@ export const serviceTargets: ServiceTarget[] = [
     priceCents: 2000,
     sort: 0,
   },
+  ...minecraftTargets,
 ]
 
 export const addons: Addon[] = [
@@ -545,6 +548,7 @@ export const addons: Addon[] = [
     description: "Guide will join voice. Text-only is still available if you prefer.",
     gameSlug: null,
     pricingRule: { type: "flat", value: 0 },
+    blockedServiceSlugs: [minecraftVoiceBlock],
   },
   {
     id: "addon-text-only",
@@ -578,6 +582,7 @@ export const addons: Addon[] = [
     gameSlug: "arc-raiders",
     pricingRule: { type: "percent_of_order", value: 15 },
   },
+  ...minecraftAddons,
 ]
 
 export const bundles: Bundle[] = [

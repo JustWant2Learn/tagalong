@@ -53,6 +53,7 @@
 }
 
 :root {
+  color-scheme: light;
   --game-accent: oklch(0.72 0.08 80);
   --game-accent-foreground: oklch(0.2 0.03 70);
   --game-soft: oklch(0.78 0.06 85);
@@ -91,6 +92,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.145 0.012 70);
   --foreground: oklch(0.96 0.012 85);
   --card: oklch(0.19 0.014 70);
@@ -140,6 +142,12 @@
   --game-accent: oklch(0.66 0.18 285);
   --game-accent-foreground: oklch(0.14 0.05 285);
   --game-soft: oklch(0.7 0.14 250);
+}
+
+.game-minecraft {
+  --game-accent: oklch(0.68 0.16 135);
+  --game-accent-foreground: oklch(0.18 0.04 80);
+  --game-soft: oklch(0.62 0.1 60);
 }
 
 .game-default {

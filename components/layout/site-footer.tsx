@@ -2,12 +2,13 @@ import Link from "next/link"
 
 import { Logo } from "@/components/layout/logo"
 import { brand } from "@/lib/brand"
+import { minecraftLegalNotice } from "@/lib/games/minecraft"
 import { affiliationDisclaimer, footerColumns } from "@/lib/site"
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/70 bg-card/40">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 md:grid-cols-5">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 md:grid-cols-3 lg:grid-cols-6">
         <div className="md:col-span-1">
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">{brand.description}</p>
@@ -38,7 +39,10 @@ export function SiteFooter() {
           <p>
             © 2026 {brand.legalName}. All rights reserved.
           </p>
-          <p className="max-w-2xl md:text-right">{affiliationDisclaimer}</p>
+          <div className="max-w-2xl space-y-2 md:text-right">
+            <p>{affiliationDisclaimer}</p>
+            <p className="font-medium uppercase tracking-[0.08em]">{minecraftLegalNotice}</p>
+          </div>
         </div>
       </div>
     </footer>

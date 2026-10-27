@@ -28,6 +28,13 @@ export default function GuideAgreementPage() {
         You agree to the <Link href="/code-of-conduct">code of conduct</Link>. You play on your own accounts. You never
         request customer credentials or off-platform payment.
       </p>
+      <h2>Youth safety</h2>
+      <p>
+        If you are approved for Minecraft, you also agree to the Youth Safety Rules. Family Sessions are text-only
+        inside the app and require a youth-cleared flag after extra review. You will not request or accept friend
+        requests, gifts or personal information beyond what the session needs. You will never store or ask for ID
+        images.
+      </p>
     </LegalPage>
   )
 }

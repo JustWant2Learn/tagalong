@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-label="Original voxel landscape illustration">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ec8e8"/>
+      <stop offset="1" stop-color="#d7eef7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sky)"/>
+  <circle cx="980" cy="110" r="52" fill="#f4e27a"/>
+  <g fill="#3f7d28">
+    <rect x="0" y="390" width="80" height="80"/>
+    <rect x="80" y="390" width="80" height="80"/>
+    <rect x="160" y="370" width="80" height="100"/>
+    <rect x="240" y="390" width="80" height="80"/>
+    <rect x="320" y="350" width="80" height="120"/>
+    <rect x="400" y="390" width="80" height="80"/>
+    <rect x="480" y="370" width="80" height="100"/>
+    <rect x="560" y="390" width="80" height="80"/>
+    <rect x="640" y="360" width="80" height="110"/>
+    <rect x="720" y="390" width="80" height="80"/>
+    <rect x="800" y="375" width="80" height="95"/>
+    <rect x="880" y="390" width="80" height="80"/>
+    <rect x="960" y="355" width="80" height="115"/>
+    <rect x="1040" y="390" width="80" height="80"/>
+    <rect x="1120" y="380" width="80" height="90"/>
+  </g>
+  <g fill="#6b4226">
+    <rect x="0" y="470" width="1200" height="170"/>
+  </g>
+  <g fill="#4a2e1a">
+    <rect x="0" y="540" width="1200" height="100"/>
+  </g>
+  <g fill="#2c6b1f">
+    <rect x="210" y="250" width="70" height="70"/>
+    <rect x="280" y="220" width="70" height="70"/>
+    <rect x="350" y="250" width="70" height="70"/>
+    <rect x="245" y="180" width="70" height="70"/>
+    <rect x="315" y="180" width="70" height="70"/>
+    <rect x="280" y="120" width="70" height="70"/>
+  </g>
+  <rect x="300" y="290" width="40" height="100" fill="#7a4a24"/>
+  <g fill="#5a9a3a">
+    <rect x="820" y="230" width="90" height="90"/>
+    <rect x="900" y="200" width="90" height="90"/>
+    <rect x="850" y="160" width="90" height="90"/>
+  </g>
+  <rect x="870" y="290" width="36" height="80" fill="#8b5a2b"/>
+  <g fill="#c9d6df">
+    <rect x="560" y="250" width="56" height="56"/>
+    <rect x="616" y="250" width="56" height="56"/>
+    <rect x="588" y="194" width="56" height="56"/>
+  </g>
+</svg>

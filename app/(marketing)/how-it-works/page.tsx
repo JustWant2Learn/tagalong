@@ -5,6 +5,7 @@ import { Section, SectionHeading } from "@/components/marketing/section"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { listGames } from "@/lib/catalog"
+import { joinContext } from "@/lib/games"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -68,24 +69,50 @@ export default function HowItWorksPage() {
               <CardTitle>{game.name}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
-              <p>
-                Identity: {game.identityField.label}. {game.identityField.help}
-              </p>
-              {game.joinMethods.map((method) => (
-                <div key={method.id}>
-                  <p className="font-medium text-foreground">{method.label}</p>
-                  <p>{method.description}</p>
-                  {method.notes?.map((note) => (
-                    <p key={note}>{note}</p>
+              {game.variants?.length ? (
+                game.variants.map((variant) => {
+                  const context = joinContext(game, variant.key)
+                  return (
+                    <div key={variant.key} className="space-y-2">
+                      <p className="font-medium text-foreground">{variant.label}</p>
+                      <p>
+                        Identity: {context.identityField.label}. {context.identityField.help}
+                      </p>
+                      {context.joinMethods.map((method) => (
+                        <div key={`${variant.key}-${method.id}`}>
+                          <p className="font-medium text-foreground">{method.label}</p>
+                          <p>{method.description}</p>
+                          {method.notes?.map((note) => (
+                            <p key={note}>{note}</p>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  )
+                })
+              ) : (
+                <>
+                  <p>
+                    Identity: {game.identityField.label}. {game.identityField.help}
+                  </p>
+                  {game.joinMethods.map((method) => (
+                    <div key={method.id}>
+                      <p className="font-medium text-foreground">{method.label}</p>
+                      <p>{method.description}</p>
+                      {method.notes?.map((note) => (
+                        <p key={note}>{note}</p>
+                      ))}
+                    </div>
                   ))}
-                </div>
-              ))}
+                </>
+              )}
               {game.slug === "arc-raiders" ? (
                 <p>
                   Crossplay checklist: enable it in settings if platforms differ. Share preferred server region and a
                   short note on your current progress.
                 </p>
               ) : null}
+              {game.legalNotice ? <p className="text-xs font-medium uppercase tracking-[0.08em]">{game.legalNotice}</p> : null}
             </CardContent>
           </Card>
         ))}

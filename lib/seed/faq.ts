@@ -11,7 +11,7 @@ export const faqs: FaqItem[] = [
     id: "join",
     question: "How does the Guide join me?",
     answer:
-      "It depends on the game. For ARC Raiders, you share your Embark ID (name#tag) and the Guide sends a friend or party invite. For Valheim, you share a dedicated server, a crossplay join code, or add the Guide on Steam. For Enshrouded, you share a dedicated server plus guest password, or invite them to your hosted world.",
+      "It depends on the game. For ARC Raiders, you share your Embark ID (name#tag) and the Guide sends a friend or party invite. For Valheim, you share a dedicated server, a crossplay join code, or add the Guide on Steam. For Enshrouded, you share a dedicated server plus guest password, or invite them to your hosted world. For Minecraft, you pick Java or Bedrock, then share a server, Realm, friend join, or hosting-mod invite — never a password.",
   },
   {
     id: "no-server",
@@ -60,7 +60,7 @@ export const faqs: FaqItem[] = [
     id: "voice",
     question: "Can I talk on voice?",
     answer:
-      "Yes. Voice is optional. You can prefer voice, stay text-only, or use Discord as an extra. In-app chat is always available. We block contact details and off-platform payment requests.",
+      "Yes, except Family Sessions. Voice is optional on standard orders. Family Sessions are text-only inside the app — no voice add-on and no Discord. We block contact details and off-platform payment requests.",
   },
   {
     id: "timezones",
@@ -108,6 +108,46 @@ export const gameFaqs: Record<string, FaqItem[]> = {
     faqs[1],
     faqs[2],
     faqs[8],
+    faqs[11],
+  ],
+  minecraft: [
+    faqs[0],
+    {
+      id: "mc-edition",
+      question: "Java or Bedrock: which do I have?",
+      answer:
+        "Java is the PC launcher from minecraft.net / Microsoft Store Java. Bedrock is Windows Bedrock, consoles, Switch and mobile. They cannot play together unless your server runs a crossplay bridge. We match the edition you book.",
+    },
+    {
+      id: "mc-cross-edition",
+      question: "Can a Java Guide join my Bedrock world?",
+      answer:
+        "No, not natively. We match your edition. If your server runs a bridge such as Geyser, say so in Other join instructions and we will still book the edition you play.",
+    },
+    {
+      id: "mc-host",
+      question: "Do you host servers?",
+      answer:
+        "No. Use your own server, a Realm, or a friend's hosted world. We never need your Microsoft or Mojang password.",
+    },
+    {
+      id: "mc-modpack",
+      question: "Can you play my modpack?",
+      answer:
+        "Yes on Java, if the Guide is approved for modded play. Send a CurseForge or Modrinth link plus loader and versions. The Guide confirms the install before the session timer starts. Bedrock add-ons are out of scope for now.",
+    },
+    {
+      id: "mc-grief",
+      question: "What if something gets destroyed?",
+      answer:
+        "Back up your world before building and redstone sessions. Guides never grief. Damage disputes use screenshots and chat logs.",
+    },
+    {
+      id: "mc-child",
+      question: "Can my child use this?",
+      answer:
+        "Only through a Family Session. An adult account holder books it, confirms they are 18+, and stays in the game the entire time. Text chat only, inside the app. Only youth-cleared Guides can accept.",
+    },
     faqs[11],
   ],
 }

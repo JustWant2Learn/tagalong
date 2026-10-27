@@ -21,6 +21,10 @@ export default function CodeOfConductPage() {
         <li>No teaming with other squads against the customer.</li>
         <li>No off-platform payments. No exchanging personal contact details to leave the app.</li>
         <li>Guides are 18+. Customers accept the terms, including the minimum-age note.</li>
+        <li>
+          On Minecraft and other youth-risk games: no friend requests, gifts or personal info beyond the session. No
+          Discord or voice on Family Sessions. Report child-safety concerns immediately.
+        </li>
       </ul>
     </LegalPage>
   )

@@ -21,6 +21,14 @@ export function ServiceCard({
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline">{service.pricingType.replace("_", " ")}</Badge>
             {service.isEvent ? <Badge>Event</Badge> : null}
+            {service.variants?.map((variant) => (
+              <Badge key={variant} variant="secondary">
+                {variant}
+              </Badge>
+            ))}
+            {service.familySession ? <Badge variant="secondary">Family</Badge> : null}
+            {service.hardcore ? <Badge variant="secondary">Hardcore</Badge> : null}
+            {service.moddedOnly ? <Badge variant="secondary">Java mods</Badge> : null}
           </div>
           <CardTitle className="text-lg">{service.name}</CardTitle>
           <CardDescription>{service.description}</CardDescription>

@@ -1,11 +1,12 @@
 import { arcRaiders } from "./arc-raiders"
 import { enshrouded } from "./enshrouded"
+import { minecraft } from "./minecraft"
 import type { GameConfig } from "./types"
 import { valheim } from "./valheim"
 
 export * from "./types"
 
-export const games: GameConfig[] = [arcRaiders, valheim, enshrouded]
+export const games: GameConfig[] = [arcRaiders, valheim, enshrouded, minecraft]
 
 export const gamesBySlug = Object.fromEntries(
   games.map((game) => [game.slug, game])

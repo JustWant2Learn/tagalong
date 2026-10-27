@@ -6,7 +6,7 @@ export const brand = {
   supportEmail: "support@tagalong.gg",
   tagline: "Never raid or roam alone again.",
   description:
-    "Book skilled players to squad up with you in ARC Raiders, Valheim and Enshrouded — safer extractions, bosses, builds, or just good company.",
+    "Book skilled players to squad up with you in ARC Raiders, Valheim, Enshrouded and Minecraft — safer extractions, bosses, builds, or just good company.",
   discordUrl: "https://discord.gg/tagalong",
   twitterUrl: "https://x.com/tagalong",
   colors: {
@@ -30,6 +30,11 @@ export const brand = {
         accentSoft: "#3D9DFF",
         accentForeground: "#0D0B1A",
       },
+      minecraft: {
+        accent: "#5A9A3A",
+        accentSoft: "#8B5A2B",
+        accentForeground: "#12200C",
+      },
     },
   },
   publishers: [
@@ -39,6 +44,8 @@ export const brand = {
     "Coffee Stain",
     "Keen Games",
     "Valve",
+    "Mojang",
+    "Microsoft",
   ],
   operatorCountry: "Philippines",
   defaultCommissionPct: 30,

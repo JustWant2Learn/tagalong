@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import {
   Check,
@@ -19,6 +20,8 @@ import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { brand } from "@/lib/brand"
+import { getKeywords } from "@/lib/seo/keywords"
+import { buildMetadata } from "@/lib/seo/metadata"
 import {
   getActiveEventServices,
   listFaqs,
@@ -32,6 +35,13 @@ import { localEstimates, priceLabel } from "@/lib/format"
 import { gameAccentClass } from "@/lib/game-theme"
 import { affiliationDisclaimer } from "@/lib/site"
 import { cn } from "@/lib/utils"
+
+export const metadata: Metadata = buildMetadata({
+  path: "/",
+  keywords: getKeywords("/"),
+  description:
+    "Book skilled players to squad up in ARC Raiders, Valheim, Enshrouded and Minecraft. No account sharing. Real players. Book in minutes.",
+})
 
 const steps = [
   { title: "Book", body: "Pick a game, a service, options and a time in your timezone. Pay upfront." },
