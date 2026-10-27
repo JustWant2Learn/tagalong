@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tagalong
 
-## Getting Started
+Play-with marketplace for **ARC Raiders**, **Valheim** and **Enshrouded**. Customers book skilled players (Guides) who join *their* squad or world on the Guide’s own account. We never ask for a password.
 
-First, run the development server:
+Brand name, colors, domain and support email live in [`lib/brand.ts`](lib/brand.ts). Change that file to rebrand.
+
+## Stack
+
+- Next.js 16 (App Router, TypeScript, Tailwind CSS 4)
+- shadcn/ui + Lucide
+- Game configs in `lib/games/*` (add a game = one config file + catalog rows)
+- Phase 1 uses typed seed modules. Phase 2 moves the catalog to Supabase.
+
+## Local setup
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Phase status
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Phase | Status |
+| --- | --- |
+| 1 Foundation & marketing site | In progress in this repo |
+| 2 Data model & booking | Not started |
+| 3 Guide side & matching | Not started |
+| 4 Payments, ledger & payouts | Not started — confirm Paddle/Lemon Squeezy accepts play-with before going live |
+| 5 Trust & admin | Not started |
 
-## Learn More
+## Adding a game
 
-To learn more about Next.js, take a look at the following resources:
+1. Add `lib/games/<slug>.ts` implementing `GameConfig`.
+2. Register it in `lib/games/index.ts`.
+3. Add catalog rows (services, targets) in `lib/seed/catalog.ts` (admin UI in Phase 5).
+4. No new pages. `/[game]` and `/services/[slug]` are data-driven.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` — local app
+- `npm run build` — production build
+- `npm run lint` — ESLint
