@@ -22,7 +22,7 @@ import {
   listServices,
   serviceStartingPrice,
 } from "@/lib/catalog"
-import { formatUsd, platformLabel } from "@/lib/format"
+import { formatUsd } from "@/lib/format"
 import { gameAccentClass } from "@/lib/game-theme"
 import { joinContext, resolveVariant, type GameConfig } from "@/lib/games"
 import { getKeywords } from "@/lib/seo/keywords"
@@ -98,13 +98,6 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
               </div>
             ) : null}
             <div className="mt-6 flex flex-wrap gap-2">
-              {context.platforms.map((platform) => (
-                <Badge key={platform} variant="secondary">
-                  {platformLabel(platform)}
-                </Badge>
-              ))}
-              {game.crossplay ? <Badge variant="outline">Crossplay</Badge> : null}
-              {variant?.crossplayWithin ? <Badge variant="outline">Crossplay within edition</Badge> : null}
               <Badge variant="outline">Squad up to {game.maxSquadSize}</Badge>
               {game.maxGuidesPerOrder ? (
                 <Badge variant="outline">Max {game.maxGuidesPerOrder} Guides</Badge>
