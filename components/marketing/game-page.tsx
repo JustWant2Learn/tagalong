@@ -104,6 +104,9 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
               ) : null}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/how-it-works" className={cn(buttonVariants({ size: "lg", variant: "outline" }))}>
+                How joining works
+              </Link>
               <Link
                 href={
                   variant
@@ -113,9 +116,6 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
                 className={cn(buttonVariants({ size: "lg" }))}
               >
                 Book {game.shortName}
-              </Link>
-              <Link href="/how-it-works" className={cn(buttonVariants({ size: "lg", variant: "outline" }))}>
-                How joining works
               </Link>
             </div>
           </div>

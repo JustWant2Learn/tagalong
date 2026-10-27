@@ -10,10 +10,18 @@ export const marketingNav = [
   { href: "/help", label: "Help" },
 ] as const
 
+const gameNavCopy: Record<string, string> = {
+  "arc-raiders": "Escorts, quests, farms, or a reliable third in your raid.",
+  valheim: "Bosses, biomes, and halls. They join your world.",
+  enshrouded: "Regions, Elixir Wells, and crafter halls as a guest.",
+  minecraft: "Java or Bedrock. They join your server or Realm.",
+}
+
 export const gameNav = games.map((game) => ({
   href: `/${game.slug}`,
   label: game.name,
   slug: game.slug,
+  description: gameNavCopy[game.slug] ?? game.hero.subheadline,
 }))
 
 export const footerColumns = [

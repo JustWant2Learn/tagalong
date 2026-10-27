@@ -103,11 +103,11 @@ export default function HomePage() {
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">{brand.description}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link href="/app/book" className={cn(buttonVariants({ size: "lg" }))}>
-                Book a session
-              </Link>
               <Link href="/how-it-works" className={cn(buttonVariants({ size: "lg", variant: "outline" }))}>
                 How it works
+              </Link>
+              <Link href="/app/book" className={cn(buttonVariants({ size: "lg" }))}>
+                Book a session
               </Link>
             </div>
           </div>

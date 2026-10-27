@@ -1,11 +1,17 @@
 "use client"
 
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { ChevronDown, Menu } from "lucide-react"
 
 import { Logo } from "@/components/layout/logo"
 import { ThemeToggle } from "@/components/theme/theme-toggle"
 import { Button, buttonVariants } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import {
   Sheet,
   SheetContent,
@@ -24,11 +30,24 @@ export function SiteHeader() {
         <div className="flex items-center gap-8">
           <Logo />
           <nav className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
-            {gameNav.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-foreground">
-                {item.label}
-              </Link>
-            ))}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="inline-flex cursor-pointer items-center gap-1 hover:text-foreground">
+                Games
+                <ChevronDown className="size-3.5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-80 p-1.5">
+                {gameNav.map((item) => (
+                  <DropdownMenuItem
+                    key={item.href}
+                    render={<Link href={item.href} />}
+                    className="cursor-pointer flex-col items-start gap-0.5 px-2.5 py-2.5"
+                  >
+                    <span className="font-medium text-foreground">{item.label}</span>
+                    <span className="text-xs leading-snug text-muted-foreground">{item.description}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             {marketingNav.map((item) => (
               <Link key={item.href} href={item.href} className="hover:text-foreground">
                 {item.label}
@@ -56,9 +75,11 @@ export function SiteHeader() {
                 <SheetTitle>{brand.name}</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-4 px-4 text-base">
+                <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">Games</p>
                 {gameNav.map((item) => (
                   <Link key={item.href} href={item.href} className="py-1">
-                    {item.label}
+                    <span className="block font-medium">{item.label}</span>
+                    <span className="mt-0.5 block text-sm text-muted-foreground">{item.description}</span>
                   </Link>
                 ))}
                 {marketingNav.map((item) => (

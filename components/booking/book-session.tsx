@@ -200,11 +200,11 @@ export function BookSession({
             </CardContent>
           </Card>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button size="lg" onClick={() => setStep("pay")}>
-              Continue
-            </Button>
             <Button size="lg" variant="outline" onClick={() => setStep("details")}>
               Back
+            </Button>
+            <Button size="lg" onClick={() => setStep("pay")}>
+              Continue
             </Button>
           </div>
         </div>
@@ -226,12 +226,12 @@ export function BookSession({
             </CardContent>
           </Card>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/signup" className={cn(buttonVariants({ size: "lg" }))}>
-              Create an account
-            </Link>
             <Button size="lg" variant="outline" onClick={() => setStep("schedule")}>
               Back
             </Button>
+            <Link href="/signup" className={cn(buttonVariants({ size: "lg" }))}>
+              Create an account
+            </Link>
           </div>
         </div>
       ) : null}
