@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 
 import { FaqList } from "@/components/marketing/faq-list"
 import { GuideCard } from "@/components/marketing/guide-card"
+import { Reveal } from "@/components/marketing/reveal"
 import { Section, SectionHeading } from "@/components/marketing/section"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
@@ -57,7 +58,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <div className={gameAccentClass(service.gameSlug)}>
       <section className="border-b border-border/70">
-        <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-16 md:grid-cols-[1.2fr_0.8fr]">
+        <Reveal className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-16 md:grid-cols-[1.2fr_0.8fr]">
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-game-accent">{game?.name}</p>
             <h1 className="mt-3 font-display text-4xl tracking-tight md:text-5xl">{service.name}</h1>
@@ -87,7 +88,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </Link>
             </CardContent>
           </Card>
-        </div>
+        </Reveal>
       </section>
 
       <Section>

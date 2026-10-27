@@ -12,6 +12,7 @@ import { FaqList } from "@/components/marketing/faq-list"
 import { GameSlideshow } from "@/components/marketing/game-slideshow"
 import { GuideCarousel } from "@/components/marketing/guide-carousel"
 import { JsonLd } from "@/components/marketing/json-ld"
+import { Reveal } from "@/components/marketing/reveal"
 import { Section, SectionHeading } from "@/components/marketing/section"
 import { ServiceTabs } from "@/components/marketing/service-tabs"
 import { Badge } from "@/components/ui/badge"
@@ -82,7 +83,7 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden border-b border-border/70">
         <div className="surface-grid pointer-events-none absolute inset-0 opacity-40" />
-        <div className="relative mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
+        <Reveal className="relative mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="outline" className="mb-4">
               Play-with, never account sharing
@@ -101,11 +102,11 @@ export default function HomePage() {
             </div>
           </div>
           <GameSlideshow games={games} />
-        </div>
+        </Reveal>
       </section>
 
       <div className="border-b border-border/70 bg-card/40">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-4 px-4 py-5 sm:flex-row sm:gap-10">
+        <Reveal className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-4 px-4 py-5 sm:flex-row sm:gap-10">
           {[
             { icon: KeyRound, title: "We never ask for your password" },
             { icon: Users, title: "Guides play on their own accounts" },
@@ -116,7 +117,7 @@ export default function HomePage() {
               <p>{item.title}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
 
       {events[0] ? (
@@ -127,9 +128,11 @@ export default function HomePage() {
             gameAccentClass(events[0].gameSlug)
           )}
         >
-          <p className="px-4 py-3 text-center text-sm font-medium">
-            {events[0].eventBanner ?? `${events[0].name} is live — book an event squad.`}
-          </p>
+          <Reveal>
+            <p className="px-4 py-3 text-center text-sm font-medium">
+              {events[0].eventBanner ?? `${events[0].name} is live — book an event squad.`}
+            </p>
+          </Reveal>
         </Link>
       ) : null}
 

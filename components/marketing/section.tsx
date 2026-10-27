@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 
+import { Reveal } from "@/components/marketing/reveal"
 import { cn } from "@/lib/utils"
 
 export function Section({
@@ -13,7 +14,7 @@ export function Section({
 }) {
   return (
     <section id={id} className={cn("mx-auto w-full max-w-6xl px-4 py-16 md:py-20", className)}>
-      {children}
+      <Reveal>{children}</Reveal>
     </section>
   )
 }

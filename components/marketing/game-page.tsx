@@ -4,6 +4,7 @@ import { GameArt } from "@/components/art/game-art"
 import { FaqList } from "@/components/marketing/faq-list"
 import { GuideCard } from "@/components/marketing/guide-card"
 import { JsonLd } from "@/components/marketing/json-ld"
+import { Reveal } from "@/components/marketing/reveal"
 import { Section, SectionHeading } from "@/components/marketing/section"
 import { ServiceCard } from "@/components/marketing/service-card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -44,7 +45,7 @@ export function GamePageView({ game }: { game: GameConfig }) {
         }}
       />
       <section className="border-b border-border/70">
-        <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-16 md:grid-cols-2 md:py-20">
+        <Reveal className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-16 md:grid-cols-2 md:py-20">
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-game-accent">{game.hero.eyebrow}</p>
             <h1 className="mt-3 font-display text-4xl tracking-tight md:text-6xl">{game.hero.headline}</h1>
@@ -72,7 +73,7 @@ export function GamePageView({ game }: { game: GameConfig }) {
             priority
             className="min-h-72 rounded-2xl ring-1 ring-foreground/10 md:min-h-full"
           />
-        </div>
+        </Reveal>
       </section>
 
       {isArc ? (
