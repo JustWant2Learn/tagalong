@@ -70,7 +70,7 @@ export function SiteHeader() {
             <SheetTrigger render={<Button variant="ghost" size="icon" aria-label="Open menu" />}>
               <Menu />
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right" className="w-full max-w-80 overflow-y-auto">
               <SheetHeader>
                 <SheetTitle>{brand.name}</SheetTitle>
               </SheetHeader>

@@ -11,8 +11,8 @@ export function GuideCard({ guide }: { guide: SeedGuide }) {
   const initials = guide.displayName.slice(0, 2).toUpperCase()
 
   return (
-    <Link href={`/guides/${guide.handle}`} className="block h-full">
-      <Card className="h-full transition-colors hover:bg-muted/30">
+    <Link href={`/guides/${guide.handle}`} className="block h-full min-w-0">
+      <Card className="h-full overflow-hidden transition-colors hover:bg-muted/30">
         <CardHeader className="flex-row items-start gap-3">
           <Avatar className="size-12">
             <AvatarFallback>{initials}</AvatarFallback>

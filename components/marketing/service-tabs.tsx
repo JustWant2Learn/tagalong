@@ -18,9 +18,9 @@ export function ServiceTabs({
 }) {
   return (
     <Tabs defaultValue={defaultSlug}>
-      <TabsList className="mx-auto flex-wrap">
+      <TabsList className="mx-auto h-auto min-h-8 w-full max-w-full flex-wrap justify-center gap-1 group-data-horizontal/tabs:h-auto">
         {games.map((game) => (
-          <TabsTrigger key={game.slug} value={game.slug}>
+          <TabsTrigger key={game.slug} value={game.slug} className="flex-none px-3">
             {game.name}
           </TabsTrigger>
         ))}

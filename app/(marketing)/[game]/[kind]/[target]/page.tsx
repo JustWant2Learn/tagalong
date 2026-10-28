@@ -100,13 +100,16 @@ export default async function TargetPage({
           {copy?.typicalMinutes ? <Badge variant="outline">~{copy.typicalMinutes} min</Badge> : null}
           {copy?.difficulty ? <Badge variant="outline">{copy.difficulty}</Badge> : null}
         </div>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href={`/${gameSlug}`} className={cn(buttonVariants({ size: "lg", variant: "outline" }))}>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Link
+            href={`/${gameSlug}`}
+            className={cn(buttonVariants({ size: "lg", variant: "outline" }), "min-h-11 sm:w-auto")}
+          >
             All {game.name} services
           </Link>
           <Link
             href={`/app/book?game=${gameSlug}&service=${target.serviceSlugs[0] ?? ""}`}
-            className={cn(buttonVariants({ size: "lg" }))}
+            className={cn(buttonVariants({ size: "lg" }), "min-h-11 sm:w-auto")}
           >
             Book {target.name} help
           </Link>

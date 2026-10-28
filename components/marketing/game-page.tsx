@@ -78,10 +78,12 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
         <Reveal className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-16 md:grid-cols-2 md:py-20">
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-game-accent">{game.hero.eyebrow}</p>
-            <h1 className="mt-3 font-display text-4xl tracking-tight md:text-6xl">
+            <h1 className="mt-3 font-display text-[2.15rem] tracking-tight text-balance sm:text-4xl md:text-6xl">
               {game.name}
             </h1>
-            <p className="mt-4 max-w-xl text-lg text-muted-foreground">{copy?.intro ?? game.hero.subheadline}</p>
+            <p className="mt-4 max-w-xl text-pretty text-base text-muted-foreground md:text-lg">
+              {copy?.intro ?? game.hero.subheadline}
+            </p>
             {game.variants ? (
               <div className="mt-6 flex flex-wrap gap-2">
                 {game.variants.map((item) => (
@@ -103,8 +105,11 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
                 <Badge variant="outline">Max {game.maxGuidesPerOrder} Guides</Badge>
               ) : null}
             </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/how-it-works" className={cn(buttonVariants({ size: "lg", variant: "outline" }))}>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href="/how-it-works"
+                className={cn(buttonVariants({ size: "lg", variant: "outline" }), "min-h-11 sm:w-auto")}
+              >
                 How joining works
               </Link>
               <Link
@@ -113,7 +118,7 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
                     ? `/app/book?game=${game.slug}&edition=${variant.key}`
                     : `/app/book?game=${game.slug}`
                 }
-                className={cn(buttonVariants({ size: "lg" }))}
+                className={cn(buttonVariants({ size: "lg" }), "min-h-11 sm:w-auto")}
               >
                 Book {game.shortName}
               </Link>
@@ -122,7 +127,7 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
           <GameArt
             slug={game.slug}
             priority
-            className="min-h-72 rounded-2xl ring-1 ring-foreground/10 md:min-h-full"
+            className="min-h-56 rounded-2xl ring-1 ring-foreground/10 sm:min-h-72 md:min-h-full"
           />
         </Reveal>
       </section>
@@ -179,12 +184,12 @@ export function GamePageView({ game, edition }: { game: GameConfig; edition?: st
                 <CardContent>
                   <ul className="space-y-2 text-sm">
                     {targets.map((target) => (
-                      <li key={target.id} className="flex items-center justify-between gap-4">
-                        <span>
+                      <li key={target.id} className="flex items-start justify-between gap-3">
+                        <span className="min-w-0">
                           {target.name}
                           <span className="ml-2 text-xs text-muted-foreground">{target.kind}</span>
                         </span>
-                        <span>{formatUsd(target.priceCents)}</span>
+                        <span className="shrink-0">{formatUsd(target.priceCents)}</span>
                       </li>
                     ))}
                   </ul>

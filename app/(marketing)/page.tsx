@@ -93,20 +93,25 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden border-b border-border/70">
         <div className="surface-grid pointer-events-none absolute inset-0 opacity-40" />
-        <Reveal className="relative mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
+        <Reveal className="relative mx-auto w-full max-w-6xl px-4 py-12 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="outline" className="mb-4">
               Play-with, never account sharing
             </Badge>
-            <h1 className="font-display text-4xl leading-[1.1] tracking-tight text-balance md:text-6xl">
+            <h1 className="font-display text-[2.15rem] leading-[1.1] tracking-tight text-balance sm:text-4xl md:text-6xl">
               {brand.tagline}
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">{brand.description}</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link href="/how-it-works" className={cn(buttonVariants({ size: "lg", variant: "outline" }))}>
+            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+              {brand.description}
+            </p>
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href="/how-it-works"
+                className={cn(buttonVariants({ size: "lg", variant: "outline" }), "min-h-11 sm:w-auto")}
+              >
                 How it works
               </Link>
-              <Link href="/app/book" className={cn(buttonVariants({ size: "lg" }))}>
+              <Link href="/app/book" className={cn(buttonVariants({ size: "lg" }), "min-h-11 sm:w-auto")}>
                 Book a session
               </Link>
             </div>
@@ -276,9 +281,11 @@ export default function HomePage() {
       <Section className="pt-0">
         <Card className="overflow-hidden">
           <div className="grid md:grid-cols-[1.2fr_0.8fr]">
-            <div className="p-8 md:p-10">
+            <div className="p-6 md:p-10">
               <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Guides</p>
-              <h2 className="mt-2 font-display text-3xl">Play with people. Get paid for the hours you already love.</h2>
+              <h2 className="mt-2 font-display text-3xl text-balance">
+                Play with people. Get paid for the hours you already love.
+              </h2>
               <p className="mt-3 max-w-lg text-muted-foreground">
                 Apply from the Philippines, SEA or anywhere you can keep a stable connection. 18+ only. Approved per
                 game. Payouts via Wise, PayPal or GCash.
@@ -287,7 +294,7 @@ export default function HomePage() {
                 Become a Guide
               </Link>
             </div>
-            <div className="flex flex-col justify-center gap-3 bg-muted/40 p-8 text-sm">
+            <div className="flex flex-col justify-center gap-3 bg-muted/40 p-6 text-sm md:p-8">
               <p className="flex items-center gap-2">
                 <Clock3 className="size-4" /> Set weekly availability in your timezone
               </p>

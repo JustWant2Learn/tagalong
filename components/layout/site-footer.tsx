@@ -8,7 +8,7 @@ import { affiliationDisclaimer, footerColumns } from "@/lib/site"
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/70 bg-card/40">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 md:grid-cols-3 lg:grid-cols-6">
+      <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
         <div className="md:col-span-1">
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">{brand.description}</p>

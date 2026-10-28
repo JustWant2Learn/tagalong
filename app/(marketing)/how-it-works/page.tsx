@@ -118,11 +118,11 @@ export default function HowItWorksPage() {
         ))}
       </div>
 
-      <div className="mt-10 flex flex-wrap gap-3">
-        <Link href="/refunds" className={cn(buttonVariants({ variant: "outline" }))}>
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <Link href="/refunds" className={cn(buttonVariants({ variant: "outline" }), "min-h-11 sm:w-auto")}>
           Raid and refund policy
         </Link>
-        <Link href="/app/book" className={cn(buttonVariants())}>
+        <Link href="/app/book" className={cn(buttonVariants(), "min-h-11 sm:w-auto")}>
           Book a session
         </Link>
       </div>

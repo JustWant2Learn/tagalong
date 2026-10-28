@@ -84,7 +84,7 @@ export function BookSession({
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
-      <ol className="mx-auto flex max-w-3xl items-center justify-between gap-1">
+      <ol className="mx-auto flex max-w-3xl items-center justify-between gap-0.5 sm:gap-1">
         {steps.map((item, index) => {
           const done = index < currentIndex
           const active = item.id === step
@@ -139,7 +139,7 @@ export function BookSession({
 
       {step === "details" && selectedService && game ? (
         <div className="mt-10">
-          <h1 className="font-display text-4xl tracking-tight md:text-5xl">Session details</h1>
+          <h1 className="font-display text-3xl tracking-tight text-balance md:text-5xl">Session details</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             {selectedService.name} in {game.name}. A Pro joins on their own account.
           </p>
@@ -170,7 +170,7 @@ export function BookSession({
               {game.legalNotice ? <LegalNotice notice={game.legalNotice} className="pt-2 text-left" /> : null}
             </CardContent>
           </Card>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button size="lg" variant="outline" className="min-h-11 px-5" onClick={() => setStep("service")}>
               Back to services
             </Button>
@@ -183,7 +183,7 @@ export function BookSession({
 
       {step === "schedule" && selectedService && game ? (
         <div className="mt-10">
-          <h1 className="font-display text-4xl tracking-tight md:text-5xl">Time and Pro</h1>
+          <h1 className="font-display text-3xl tracking-tight text-balance md:text-5xl">Time and Pro</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Availability calendars and named Pro matching ship with live booking. This session is ready to hold
             as next available.
@@ -196,11 +196,11 @@ export function BookSession({
               </p>
             </CardContent>
           </Card>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button size="lg" variant="outline" onClick={() => setStep("details")}>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button size="lg" variant="outline" className="min-h-11" onClick={() => setStep("details")}>
               Back
             </Button>
-            <Button size="lg" onClick={() => setStep("pay")}>
+            <Button size="lg" className="min-h-11" onClick={() => setStep("pay")}>
               Continue
             </Button>
           </div>
@@ -209,7 +209,7 @@ export function BookSession({
 
       {step === "pay" && selectedService && game ? (
         <div className="mt-10">
-          <h1 className="font-display text-4xl tracking-tight md:text-5xl">Pay</h1>
+          <h1 className="font-display text-3xl tracking-tight text-balance md:text-5xl">Pay</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Checkout is next. Create an account now so this booking can charge when payments go live.
           </p>
@@ -222,11 +222,11 @@ export function BookSession({
               <p className="text-lg font-medium">{servicePrice(selectedService)}</p>
             </CardContent>
           </Card>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button size="lg" variant="outline" onClick={() => setStep("schedule")}>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button size="lg" variant="outline" className="min-h-11" onClick={() => setStep("schedule")}>
               Back
             </Button>
-            <Link href="/signup" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="/signup" className={cn(buttonVariants({ size: "lg" }), "min-h-11")}>
               Create an account
             </Link>
           </div>
@@ -257,8 +257,10 @@ function ServiceStep({
     <div className="mt-10">
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div className="max-w-2xl">
-          <h1 className="font-display text-4xl tracking-tight md:text-5xl">What do you need help with?</h1>
-          <p className="mt-3 text-muted-foreground">
+          <h1 className="font-display text-3xl tracking-tight text-balance md:text-5xl">
+            What do you need help with?
+          </h1>
+          <p className="mt-3 text-pretty text-muted-foreground">
             Pick a game, then a service. A Pro joins your squad or world on their own account. We never ask for
             your password.
           </p>

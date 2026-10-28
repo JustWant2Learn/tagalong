@@ -57,7 +57,7 @@ export function GameSlideshow({ games }: { games: GameConfig[] }) {
             <Link
               href={`/${game.slug}`}
               className={cn(
-                "group relative block min-h-72 overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/10 md:min-h-80 dark:ring-white/10",
+                "group relative block min-h-64 overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/10 sm:min-h-72 md:min-h-80 dark:ring-white/10",
                 gameAccentClass(game.slug)
               )}
             >
@@ -68,12 +68,12 @@ export function GameSlideshow({ games }: { games: GameConfig[] }) {
                 className="absolute inset-0"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
-              <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
+              <div className="absolute inset-x-0 bottom-0 p-4 pr-14 sm:p-5 md:p-7 md:pr-7">
                 {index === 0 ? (
                   <p className="text-xs uppercase tracking-[0.16em] text-game-accent">Flagship</p>
                 ) : null}
                 <p className="font-display text-2xl text-white md:text-3xl">{game.name}</p>
-                <p className="mt-1 max-w-xl text-sm text-white/80">{game.hero.subheadline}</p>
+                <p className="mt-1 max-w-xl text-pretty text-sm text-white/80">{game.hero.subheadline}</p>
               </div>
             </Link>
           </CarouselItem>
